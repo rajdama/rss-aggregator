@@ -32,9 +32,9 @@ func main() {
 		log.Fatal("DBURL not found in env")
 	}
 
-	conn, err := sql.Open("postgres", dbURL)
-	if err != nil {
-		log.Fatal("Can't conect", err)
+	conn, errDB := sql.Open("postgres", dbURL)
+	if errDB != nil {
+		log.Fatal("Can't conect", errDB)
 	}
 
 	apiCfg := apiConfig{
@@ -56,6 +56,7 @@ func main() {
 
 	v1Route.Get("/ready", handlerReadiness)
 	v1Route.Get("/error", handlerError)
+	v1Route.Post("/user", apiCfg.handlerCreateUser)
 
 	router.Mount("/v1", v1Route)
 
