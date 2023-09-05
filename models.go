@@ -42,7 +42,7 @@ func databaseUserToUser(dbUser database.User) User {
 	}
 }
 
-func databaseFeedTofeed(dbFeed database.Feed) Feed {
+func databaseFeedToFeed(dbFeed database.Feed) Feed {
 	return Feed{
 		ID:        dbFeed.ID,
 		CreatedAt: dbFeed.CreatedAt,
@@ -53,15 +53,17 @@ func databaseFeedTofeed(dbFeed database.Feed) Feed {
 	}
 }
 
-func databaseFeedsTofeeds(dbFeeds []database.Feed) []Feed {
+func databaseFeedsToFeeds(dbFeeds []database.Feed) []Feed {
 	feeds := []Feed{}
+
 	for _, dbFeed := range dbFeeds {
-		feeds = append(feeds, databaseFeedTofeed(dbFeed))
+		feeds = append(feeds, databaseFeedToFeed(dbFeed))
 	}
+
 	return feeds
 }
 
-func databaseFeedFollowTofeedfollow(dbFeed database.FeedFollow) FeedFollow {
+func databaseFeedFollowToFeedFollow(dbFeed database.FeedFollow) FeedFollow {
 	return FeedFollow{
 		ID:        dbFeed.ID,
 		CreatedAt: dbFeed.CreatedAt,
@@ -69,4 +71,14 @@ func databaseFeedFollowTofeedfollow(dbFeed database.FeedFollow) FeedFollow {
 		UserId:    dbFeed.UserID,
 		FeedId:    dbFeed.FeedID,
 	}
+}
+
+func databaseFeedFollowsToFeedFollows(dbFeeds []database.FeedFollow) []FeedFollow {
+	feedFollows := []FeedFollow{}
+
+	for _, feedFollow := range dbFeeds {
+		feedFollows = append(feedFollows, databaseFeedFollowToFeedFollow(feedFollow))
+	}
+
+	return feedFollows
 }
