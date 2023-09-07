@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -19,6 +20,9 @@ type apiConfig struct {
 }
 
 func main() {
+
+	a, b := urlToFeed("https://www.wagslane.dev/index.xml")
+	fmt.Println(a, b)
 
 	godotenv.Load()
 
