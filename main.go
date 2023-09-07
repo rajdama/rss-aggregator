@@ -21,9 +21,6 @@ type apiConfig struct {
 
 func main() {
 
-	a, b := urlToFeed("https://www.wagslane.dev/index.xml")
-	fmt.Println(a, b)
-
 	godotenv.Load()
 
 	portString := os.Getenv("PORT")
